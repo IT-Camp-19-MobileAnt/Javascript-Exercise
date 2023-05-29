@@ -1,12 +1,12 @@
 const { getUser, testCase } = require("./mock");
 
-let done = true; // หากน้องๆทำเสร็จแล้วสามารถเปลี่ยนเป็น false เพื่อเช็คความถูกต้องก่อนเรียกพี่ๆได้เลย
+let done = false; // หากน้องๆทำเสร็จแล้วสามารถเปลี่ยนเป็น false เพื่อเช็คความถูกต้องก่อนเรียกพี่ๆได้เลย
 
 let users = [];
 // ข้อ 1 จงเรียกใช้ getUser และเก็บผลลัพธ์ไว้ในตัวแปร users
 async function setUser() {
   // เพิ่มโค้ดตรงนี้
-  users = await getUser();
+
 }
 
 // ข้อ 2
@@ -17,10 +17,7 @@ async function setUser() {
 // หมายเหตุ: username จะไม่เป็น case sensitive
 function signIn(username, password) {
   // เพิ่มโค้ดตรงนี้
-  return users.some(
-    (user) =>
-      user.username === username.toLowerCase() && user.password === password
-  );
+
 }
 
 // ข้อ 3
@@ -32,15 +29,7 @@ function signIn(username, password) {
 // หมายเหตุ: username จะไม่เป็น case sensitive
 function signUp(username, password) {
   // เพิ่มโค้ดตรงนี้
-  if (
-    users.some((user) => user.username === username.toLowerCase()) ||
-    password.length < 3
-  )
-    return false;
-  else {
-    users.push({ username: username.toLowerCase(), password });
-    return true;
-  }
+
 }
 
 // ข้อ 4 จงกรองข้อมูลใน Array users โดยให้เอาเฉพาะ username ที่มีคำว่า "it" อยู่ และความยาวมากกว่า 3 ตัวอักษร
@@ -48,17 +37,7 @@ function signUp(username, password) {
 // - (ไม่อยู่ใน TestCase) ข้อ 4.1 ให้ใช้ forEach และ console.log แสดง "ลำดับ", "username", "password" ของแต่ละ user ที่ผ่านเงื่อนไข
 function filterUsers() {
   // เพิ่มโค้ดตรงนี้
-    const showUsers = (usr) => {
-      console.log("--------------------");
-      usr.forEach((user, index) => {
-        console.log(`${index} : ${user.username} : ${user.password}`);
-      });
-    };
-    const filteredUsers = users.filter(
-      (user) => user.username.includes("it") && user.username.length > 3
-    );
-    showUsers(filteredUsers);
-    return filteredUsers;
+
 }
 
 // --------------- ห้ามแก้โค้ดส่วนนี้ ---------------
