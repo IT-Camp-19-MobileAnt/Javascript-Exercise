@@ -1,10 +1,10 @@
 const { getUser, testCase } = require("./mock");
 
-let done = false; // หากน้องๆทำเสร็จแล้วสามารถเปลี่ยนเป็น false เพื่อเช็คความถูกต้องก่อนเรียกพี่ๆได้เลย
+let done = false; // หากน้องๆทำเสร็จแล้วสามารถเปลี่ยนเป็น true เพื่อเช็คความถูกต้องก่อนเรียกพี่ๆได้เลย
 
 let users = [];
 // ข้อ 1 จงเรียกใช้ getUser และเก็บผลลัพธ์ไว้ในตัวแปร users
-async function setUser() {
+function setUser() {
   // เพิ่มโค้ดตรงนี้
 
 }
@@ -44,4 +44,21 @@ function filterUsers() {
 if (done) {
   const getUsr = () => users;
   testCase(setUser, signIn, signUp, filterUsers, getUsr);
+} else {
+  console.log('------- Start setUser Function -------')
+  setUser()
+  console.log('------- End setUser Function -------\n')
+
+  console.log('------- Start signIn Function -------')
+  signIn("username", "password")
+  console.log('------- End signIn Function -------\n')
+
+  console.log('------- Start signUp Function -------')
+  signUp("username", "password")
+  console.log('------- End signUp Function -------\n')
+
+  console.log('------- Start filterUsers Function -------')
+  filterUsers()
+  console.log('------- End filterUsers Function -------')
+
 }
