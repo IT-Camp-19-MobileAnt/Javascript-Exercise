@@ -63,7 +63,7 @@ function main() {
   } else {
     // --- Start โค้ดสำหรับใช้ทดสอบโปรแกรมห้ามแก้นะ ---
     const getUsr = () => users;
-    testCase(setUser, signIn, signUp, filterUsers, getUsr);
+    testCase(initUsers, signIn, signUp, filterUsers, getUsr);
     // --- End โค้ดสำหรับใช้ทดสอบโปรแกรมห้ามแก้นะ ---
   } 
 }
