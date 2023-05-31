@@ -16,21 +16,21 @@ function getUser() {
   });
 }
 function testCase(mainCode, signIn, signUp, filterUsers, users) {
-  let passCount = -1;
+  let passCount = 0;
   mainCode()
     .then(async () => {
-      const result = users()
+      const result = users();
       const result2 = await getUser();
       const isPass = result2.every((user, index) => {
         return user.username === result[index].username;
       });
       if (isPass) {
         console.log("--------------------");
-        console.log("Test Case 0 : Pass");
+        console.log("Test Case 1 : Pass");
         passCount++;
       } else {
         console.log("--------------------");
-        console.log("Test Case 0 : Fail");
+        console.log("Test Case 1 : Fail");
         console.log(
           `Your output length: ${result2.length}, Expected length: ${result.length}, Function: setUser`
         );
@@ -66,11 +66,11 @@ function testCase(mainCode, signIn, signUp, filterUsers, users) {
       });
       if (isPass) {
         console.log("--------------------");
-        console.log("filterUsers : Pass");
+        console.log("Test Case 10 : Pass");
         passCount++;
       } else {
         console.log("--------------------");
-        console.log("filterUsers : Fail");
+        console.log("Test Case 10 : Fail");
         console.log(
           `Your output length: ${result2.length}, Expected length: ${result.length}, Function: filterUsers`
         );
@@ -83,7 +83,8 @@ function testCase(mainCode, signIn, signUp, filterUsers, users) {
     .finally(() => {
       console.log("--------------------");
       console.log(
-        `ผลการทดสอบ ${passCount}/${testCases.length + 1} ${passCount === testCases.length + 1 ? "🎉" : ""
+        `ผลการทดสอบ ${passCount}/${testCases.length + 2} ${
+          passCount === testCases.length + 2 ? "🎉" : ""
         }`
       );
     });
