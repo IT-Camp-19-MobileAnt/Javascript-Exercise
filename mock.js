@@ -16,7 +16,7 @@ function getUser() {
   });
 }
 function testCase(mainCode, signIn, signUp, filterUsers, users) {
-  let passCount = 0;
+  let passCount = -1;
   mainCode()
     .then(async () => {
       const result = users()
@@ -83,8 +83,7 @@ function testCase(mainCode, signIn, signUp, filterUsers, users) {
     .finally(() => {
       console.log("--------------------");
       console.log(
-        `ผลการทดสอบ ${passCount}/${testCases.length + 1} ${
-          passCount === testCases.length + 1 ? "🎉" : ""
+        `ผลการทดสอบ ${passCount}/${testCases.length + 1} ${passCount === testCases.length + 1 ? "🎉" : ""
         }`
       );
     });

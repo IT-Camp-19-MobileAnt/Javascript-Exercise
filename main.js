@@ -1,13 +1,13 @@
 const { getUser, testCase } = require("./mock");
 
-let done = false; // หากน้องๆทำเสร็จแล้วสามารถเปลี่ยนเป็น true เพื่อเช็คความถูกต้องก่อนเรียกพี่ๆได้เลย
+let done = true; // หากน้องๆทำเสร็จแล้วสามารถเปลี่ยนเป็น true เพื่อเช็คความถูกต้องก่อนเรียกพี่ๆได้เลย
 
 let users = [];
 // ข้อ 1 จงเรียกใช้ getUser ซึ่งฟังชั่นนี้จะให้ข้อมูล Array ของผู้ใช้กลับมา ภายใน 1 milliseconds
 // แล้วนำข้อมูลผู้ใช้นั้นไปเก็บไว้ในตัวแปรที่ชื่อว่า users (ตัวแปรในบรรทัดที่ 5)
-function initUsers() {
+async function initUsers() {
   // เพิ่มโค้ดตรงนี้
-
+  users = await getUser();
 }
 
 // ข้อ 2
@@ -17,7 +17,8 @@ function initUsers() {
 // หมายเหตุ: username จะไม่เป็น case sensitive และต้องทำข้อที่ 1 ก่อนจึงจะทำข้อนี้ได้
 function signIn(username, password) {
   // เพิ่มโค้ดตรงนี้
-
+  username = username.toLowerCase();
+  return users.some((user) => user.username.toLowerCase() === username && user.password === password);
 }
 
 // ข้อ 3
@@ -28,7 +29,13 @@ function signIn(username, password) {
 // หมายเหตุ: username จะไม่เป็น case sensitive และต้องทำข้อที่ 1 ก่อนจึงจะทำข้อนี้ได้
 function signUp(username, password) {
   // เพิ่มโค้ดตรงนี้
-
+  username = username.toLowerCase()
+  if (users.filter((user) => user.username.toLowerCase() === username).length === 0 && password.length >= 3) {
+    users = [{ username: username, password: password }, ...users]
+    return true;
+  } else {
+    return false;
+  }
 }
 
 // ข้อ 4 จงกรองข้อมูลใน Array users โดยให้เอาเฉพาะ username ที่มีคำว่า "it" อยู่ และความยาวมากกว่า 3 ตัวอักษร
@@ -38,7 +45,7 @@ function signUp(username, password) {
 //   ให้ใช้ forEach และ console.log แสดง "ลำดับ", "ชื่อผู้ใช้", "รหัสผ่าน" ของแต่ละ user ที่ผ่านเงื่อนไขการกรอง
 function filterUsers() {
   // เพิ่มโค้ดตรงนี้
-
+  return users.filter((user) => user.username.includes("it") && user.username.length > 3);
 }
 
 function main() {
@@ -65,7 +72,7 @@ function main() {
     const getUsr = () => users;
     testCase(initUsers, signIn, signUp, filterUsers, getUsr);
     // --- End โค้ดสำหรับใช้ทดสอบโปรแกรมห้ามแก้นะ ---
-  } 
+  }
 }
 
 main()
