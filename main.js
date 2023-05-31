@@ -1,13 +1,13 @@
 const { getUser, testCase } = require("./mock");
 
-let done = false; // หากน้องๆทำเสร็จแล้วสามารถเปลี่ยนเป็น true เพื่อเช็คความถูกต้องก่อนเรียกพี่ๆได้เลย
+let done = true; // หากน้องๆทำเสร็จแล้วสามารถเปลี่ยนเป็น true เพื่อเช็คความถูกต้องก่อนเรียกพี่ๆได้เลย
 
 let users = [];
 // ข้อ 1 จงเรียกใช้ getUser ซึ่งฟังชั่นนี้จะให้ข้อมูล Array ของผู้ใช้กลับมา ภายใน 1 milliseconds
 // แล้วนำข้อมูลผู้ใช้นั้นไปเก็บไว้ในตัวแปรที่ชื่อว่า users (ตัวแปรในบรรทัดที่ 5)
 async function initUsers() {
   // เพิ่มโค้ดตรงนี้
-
+  users = await getUser();
 }
 
 // ข้อ 2
@@ -17,7 +17,10 @@ async function initUsers() {
 // หมายเหตุ: username พิมพ์เล็กหรือพิมพ์ใหญ่จะเหมือนกัน เช่น adMiN จะเท่ากับ admin และต้องทำข้อที่ 1 ก่อนจึงจะทำข้อนี้ได้
 function signIn(username, password) {
   // เพิ่มโค้ดตรงนี้
-
+  return users.some(
+    (user) =>
+      user.username === username.toLowerCase() && user.password === password
+  );
 }
 
 // ข้อ 3
@@ -28,7 +31,15 @@ function signIn(username, password) {
 // หมายเหตุ: username พิมพ์เล็กหรือพิมพ์ใหญ่จะเหมือนกัน เช่น adMiN จะเท่ากับ admin และต้องทำข้อที่ 1 ก่อนจึงจะทำข้อนี้ได้
 function signUp(username, password) {
   // เพิ่มโค้ดตรงนี้
-
+  if (
+    users.some((user) => user.username === username.toLowerCase()) ||
+    password.length < 3
+  )
+    return false;
+  else {
+    users.push({ username: username.toLowerCase(), password });
+    return true;
+  }
 }
 
 // ข้อ 4 จงกรองข้อมูลใน Array users โดยให้เอาเฉพาะ username ที่มีคำว่า "it" อยู่ และความยาวมากกว่า 3 ตัวอักษร
@@ -38,7 +49,17 @@ function signUp(username, password) {
 //   ให้ใช้ forEach และ console.log แสดง "ลำดับ", "ชื่อผู้ใช้", "รหัสผ่าน" ของแต่ละ user ที่ผ่านเงื่อนไขการกรอง
 function filterUsers() {
   // เพิ่มโค้ดตรงนี้
-
+  const showUsers = (usr) => {
+    console.log("--------------------");
+    usr.forEach((user, index) => {
+      console.log(`${index} : ${user.username} : ${user.password}`);
+    });
+  };
+  const filteredUsers = users.filter(
+    (user) => user.username.includes("it") && user.username.length > 3
+  );
+  showUsers(filteredUsers);
+  return filteredUsers;
 }
 
 function main() {
