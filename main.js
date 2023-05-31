@@ -43,9 +43,12 @@ function filterUsers() {
 
 // --------------- ห้ามแก้โค้ดส่วนนี้ ---------------
 if (done) {
+  // --- Start โค้ดสำหรับใช้ทดสอบโปรแกรมห้ามแก้นะ ---
   const getUsr = () => users;
   testCase(setUser, signIn, signUp, filterUsers, getUsr);
+  // --- End โค้ดสำหรับใช้ทดสอบโปรแกรมห้ามแก้นะ ---
 } else {
+  // --- Start ตรงนี้ใช้สำหรับ debug น้องๆสามารถแก้ได้ตามที่น้องต้องการ ---
   console.log('------- Start setUser Function -------')
   setUser()
   console.log('------- End setUser Function -------\n')
@@ -61,5 +64,5 @@ if (done) {
   console.log('------- Start filterUsers Function -------')
   filterUsers()
   console.log('------- End filterUsers Function -------')
-
+  // --- End ตรงนี้ใช้สำหรับ debug น้องๆสามารถแก้ได้ตามที่น้องต้องการ ---
 }
