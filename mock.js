@@ -83,8 +83,8 @@ function testCase(mainCode, signIn, signUp, filterUsers, users) {
     .finally(() => {
       console.log("--------------------");
       console.log(
-        `ผลการทดสอบ ${passCount}/${testCases.length + 2} ${
-          passCount === testCases.length + 2 ? "🎉" : ""
+        `ผลการทดสอบ ${passCount}/${testCases.length + 1} ${
+          passCount === testCases.length + 1 ? "🎉" : ""
         }`
       );
     });
