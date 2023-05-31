@@ -41,28 +41,31 @@ function filterUsers() {
 
 }
 
-// --------------- ห้ามแก้โค้ดส่วนนี้ ---------------
-if (!done) {
-  // --- Start ตรงนี้ใช้สำหรับ debug น้องๆสามารถแก้ได้ตามที่น้องต้องการ ---
-  console.log('------- Start setUser Function -------')
-  setUser()
-  console.log('------- End setUser Function -------\n')
+function main() {
+  if (!done) {
+    // --- Start ตรงนี้ใช้สำหรับ debug น้องๆสามารถแก้ได้ตามที่น้องต้องการ ---
+    console.log('------- Start setUser Function -------')
+    setUser()
+    console.log('------- End setUser Function -------\n')
 
-  console.log('------- Start signIn Function -------')
-  signIn("username", "password")
-  console.log('------- End signIn Function -------\n')
+    console.log('------- Start signIn Function -------')
+    signIn("username", "password")
+    console.log('------- End signIn Function -------\n')
 
-  console.log('------- Start signUp Function -------')
-  signUp("username", "password")
-  console.log('------- End signUp Function -------\n')
+    console.log('------- Start signUp Function -------')
+    signUp("username", "password")
+    console.log('------- End signUp Function -------\n')
 
-  console.log('------- Start filterUsers Function -------')
-  filterUsers()
-  console.log('------- End filterUsers Function -------')
-  // --- End ตรงนี้ใช้สำหรับ debug น้องๆสามารถแก้ได้ตามที่น้องต้องการ ---
-} else {
-  // --- Start โค้ดสำหรับใช้ทดสอบโปรแกรมห้ามแก้นะ ---
-  const getUsr = () => users;
-  testCase(setUser, signIn, signUp, filterUsers, getUsr);
-  // --- End โค้ดสำหรับใช้ทดสอบโปรแกรมห้ามแก้นะ ---
+    console.log('------- Start filterUsers Function -------')
+    filterUsers()
+    console.log('------- End filterUsers Function -------')
+    // --- End ตรงนี้ใช้สำหรับ debug น้องๆสามารถแก้ได้ตามที่น้องต้องการ ---
+  } else {
+    // --- Start โค้ดสำหรับใช้ทดสอบโปรแกรมห้ามแก้นะ ---
+    const getUsr = () => users;
+    testCase(setUser, signIn, signUp, filterUsers, getUsr);
+    // --- End โค้ดสำหรับใช้ทดสอบโปรแกรมห้ามแก้นะ ---
+  } 
 }
+
+main()
