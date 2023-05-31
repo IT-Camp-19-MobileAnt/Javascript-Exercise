@@ -44,9 +44,9 @@ function filterUsers() {
 function main() {
   if (!done) {
     // --- Start ตรงนี้ใช้สำหรับ debug น้องๆสามารถแก้ได้ตามที่น้องต้องการ ---
-    console.log('------- Start setUser Function -------')
-    setUser()
-    console.log('------- End setUser Function -------\n')
+    console.log('------- Start initUsers Function -------')
+    initUsers()
+    console.log('------- End initUsers Function -------\n')
 
     console.log('------- Start signIn Function -------')
     signIn("username", "password")
